@@ -1,0 +1,21 @@
+[package]
+name = "c3"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+alloy = { version = "1.0.30", features = [ "full"] }
+alloy-provider = "1.0.17"
+alloy-transport-http = "1.0.17"
+alloy-rpc-types = "1.0.17"
+alloy-primitives = "1.2.1"
+alloy-contract = "1.0.17"
+alloy-sol-types = "1.2.1"
+alloy-rpc-types-anvil = "1.0.17"  
+futures-util = "0.3.31"
+anyhow = "1.0.98"
+reqwest = "0.12.22"
+log = "0.4.27"
+pretty_env_logger = "0.5.0"
+tokio = { version = "1.45.0", features = ["full"] }
+eyre = "0.6.12"
