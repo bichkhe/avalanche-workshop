@@ -18,7 +18,7 @@ async fn main() -> eyre::Result<()> {
     let provider = Arc::new(ProviderBuilder::new().connect_http(reqwest_url));
 
     // Replace with the recipient's address
-    let to_address = Address::from_str("0xRecipientAddressHere")?;
+    let to_address = Address::from_str("0xF962C96b6A7Bc1e6aD3e9905301F5E7d0287Cc5b")?;
 
     // Amount to send (in wei, 1 AVAX = 10^18 wei)
     let value = U256::from_str_radix("10000000000000000", 10)?; // 0.01 AVAX
