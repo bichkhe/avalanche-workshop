@@ -1,13 +1,6 @@
-use alloy::primitives::U64;
-use alloy::primitives::{Address, B256, Bytes, Signature, U256};
-use alloy::providers::Provider;
-use alloy::rpc::types::BlockNumberOrTag;
-use alloy::rpc::types::eth::Block;
-use alloy::rpc::types::eth::BlockId;
-use alloy::rpc::types::eth::{Transaction, TransactionRequest};
-use alloy_primitives::TxKind;
-use alloy_provider::ProviderBuilder;
-use alloy_transport_http::Http;
+use alloy::primitives::{Address, TxKind, U256};
+use alloy::providers::{Provider, ProviderBuilder};
+use alloy::rpc::types::eth::TransactionRequest;
 use std::str::FromStr;
 use std::sync::Arc;
 
@@ -17,21 +10,22 @@ async fn main() -> eyre::Result<()> {
     let reqwest_url = reqwest::Url::parse("https://api.avax-test.network/ext/bc/C/rpc")?;
     let provider = Arc::new(ProviderBuilder::new().connect_http(reqwest_url));
 
-    // Replace with the recipient's address
+    // Replace with the sender and recipient addresses
+    let from_address = Address::from_str("0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC")?;
     let to_address = Address::from_str("0xF962C96b6A7Bc1e6aD3e9905301F5E7d0287Cc5b")?;
 
     // Amount to send (in wei, 1 AVAX = 10^18 wei)
     let value = U256::from_str_radix("10000000000000000", 10)?; // 0.01 AVAX
 
     // Get the current nonce for the sender
-    let nonce = provider.get_transaction_count(to_address).await?;
+    let nonce = provider.get_transaction_count(from_address).await?;
 
     // Estimate gas price
     let gas_price = provider.get_gas_price().await?;
 
     // Build the transaction
     let tx = TransactionRequest {
-        from: Some(to_address),
+        from: Some(from_address),
         to: Some(TxKind::Call(to_address)),
         value: Some(value),
         gas: Some(21000),
@@ -45,7 +39,7 @@ async fn main() -> eyre::Result<()> {
     let chain_id = provider.get_chain_id().await?;
     println!("Chain ID: {}", chain_id);
     println!("Transaction request: {:?}", tx);
-    println!("From address: {:?}", to_address);
+    println!("From address: {:?}", from_address);
     println!("To address: {:?}", to_address);
     println!("Value: {:?}", value);
     println!("Nonce: {:?}", nonce);

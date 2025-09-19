@@ -1,1 +1,11 @@
 bin/target
+avalanche-sdk-typescript/node_modules
+avalanche-sdk-typescript/dist
+avalanche-sdk-typescript/build
+avalanche-sdk-typescript/coverage
+avalanche-sdk-typescript/dist-esm
+avalanche-sdk-typescript/dist-cjs
+avalanche-sdk-typescript/dist-types
+avalanche-sdk-typescript/dist-types-esm
+avalanche-sdk-typescript/dist-types-cjs
+avalanche-sdk-typescript/dist-types-esm
