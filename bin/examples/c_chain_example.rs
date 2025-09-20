@@ -48,7 +48,8 @@ async fn main() -> eyre::Result<()> {
     println!("   Current Gas Price: {} wei", gas_price);
     
     // Example: Check balance of an address
-    let example_address = Address::from_str("0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC")?; // Example address
+    //let example_address = Address::from_str("0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC")?; // Example address
+    let example_address = Address::from_str("0x3656DD5F2f1DEA6535E239A8daFCAbC1A02574FC")?;
     let balance = provider.get_balance(example_address).await?;
     println!("   Example Address Balance: {} wei", balance);
     println!("   Example Address Balance: {} AVAX", U256::from(balance) / U256::from(10_u64.pow(18)));
